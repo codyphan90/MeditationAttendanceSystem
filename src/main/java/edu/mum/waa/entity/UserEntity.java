@@ -1,9 +1,8 @@
 package edu.mum.waa.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="USER")
@@ -23,6 +22,12 @@ public class UserEntity {
 
     @Column(name="Role")
     private String role;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_block",
+    joinColumns = {@JoinColumn(name = "User_Id")},
+    inverseJoinColumns = {@JoinColumn(name="Block_Id")})
+    private Set<BlockEntity> blockList = new HashSet<>();
 
     public UserEntity() {
     }
@@ -73,5 +78,9 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Set<BlockEntity> getBlockList() {
+        return blockList;
     }
 }
