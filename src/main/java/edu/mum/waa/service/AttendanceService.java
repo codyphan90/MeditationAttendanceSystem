@@ -33,7 +33,7 @@ public class AttendanceService {
     }
 
     public List<AttendanceEntity> findAttendanceList(UserEntity student, BlockEntity blockEntity) {
-        return attendanceRepository.findAttendanceInBlock(student.getUserId(), student.getCardId(),
+        return attendanceRepository.findAttendanceInBlock(student.getUserid(), student.getCardId(),
                 blockEntity.getStartDate(), blockEntity.getEndDate());
     }
 }

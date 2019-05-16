@@ -3,29 +3,21 @@
 <head>
     <div th:fragment="header-css">
         <!-- this is header-css -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     </div>
 </head>
 <body>
-<div th:fragment="header">
-    <!-- this is header -->
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">Mediation Management System</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a th:href="@{/}">Home</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="active" sec:authorize-url="/admin/process"><a th:href="@{/}">Process</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-
+<!-- this is header -->
+<header class="masthead mb-auto" th:fragment="header">
+    <div class="inner">
+        <h3 class="masthead-brand"><a th:href="@{/}">Home</a></h3>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" sec:authorize-url="/admin" th:href="@{/admin/process}">Process</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+        </nav>
+    </div>
+</header>
 </body>
 </html>
