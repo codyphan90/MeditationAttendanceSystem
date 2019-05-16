@@ -15,7 +15,7 @@ public class AttendanceEntity {
 
 
     @Column(name = "Card_Id")
-    private Integer cardId;
+    private Long cardId;
 
     @Column(name = "Date")
     private LocalDate date;
@@ -29,7 +29,7 @@ public class AttendanceEntity {
     public AttendanceEntity() {
     }
 
-    public AttendanceEntity(Integer studentId, Integer cardId, LocalDate date, String type, String location) {
+    public AttendanceEntity(Integer studentId, Long cardId, LocalDate date, String type, String location) {
         this.studentId = studentId;
         this.cardId = cardId;
         this.date = date;
@@ -53,11 +53,11 @@ public class AttendanceEntity {
         this.studentId = studentId;
     }
 
-    public Integer getCardId() {
+    public Long getCardId() {
         return cardId;
     }
 
-    public void setCardId(Integer cardId) {
+    public void setCardId(Long cardId) {
         this.cardId = cardId;
     }
 
