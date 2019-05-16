@@ -10,6 +10,7 @@ import edu.mum.waa.response.StudentReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,16 +26,18 @@ public class AttendanceService {
     @Autowired
     private UserRepository userRepository;
 
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
+
     public List<StudentReport> getReport(Integer blockId) {
         BlockEntity blockEntity = blockRepository.findByBlockIdEquals(blockId);
         List<StudentReport> studentReports = new ArrayList<>();
-        if(blockEntity == null) return studentReports;
+        if (blockEntity == null) return studentReports;
         blockEntity.getUserList().forEach(student -> {
-                Integer attendedCount = countAttendance(student, blockEntity);
-                Integer sessionTotal = blockEntity.getTotalDate();
-                Double percent = (double) Math.round(attendedCount.doubleValue() / sessionTotal.doubleValue() * 100);
-                StudentReport studentReport = new StudentReport(blockEntity.getName(), student.getName(), attendedCount, sessionTotal, percent, convertBonus(percent));
-                studentReports.add(studentReport);
+            Integer attendedCount = countAttendance(student, blockEntity);
+            Integer sessionTotal = blockEntity.getTotalDate();
+            Double percent = new Double(df2.format((double) attendedCount.doubleValue() / sessionTotal.doubleValue() * 100));
+            StudentReport studentReport = new StudentReport(blockEntity.getName(), student.getName(), attendedCount, sessionTotal, percent, convertBonus(percent));
+            studentReports.add(studentReport);
         });
         Collections.sort(studentReports);
         return studentReports;
@@ -46,10 +49,10 @@ public class AttendanceService {
     }
 
     public Double convertBonus(Double percent) {
-        if (percent<70) return 0.0;
+        if (percent < 70) return 0.0;
         if (percent >= 70 && percent < 80) return 0.5;
         if (percent >= 80 && percent < 90) return 1.0;
-        if (percent >=90) return 1.5;
+        if (percent >= 90) return 1.5;
         return 0.0;
     }
 }

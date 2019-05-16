@@ -21,7 +21,7 @@
         <tr th:each="report : ${reports}">
             <td class="align-middle"><span th:text="${report.getStudentName()}"></span></td>
             <td class="align-middle"><span th:text="${report.getAttendedCount() + '/' + report.getTotalSession()}"></span></td>
-            <td class="align-middle"><span th:text="${report.getPercentage()}"></span></td>
+            <td class="align-middle"><span th:text="${report.getPercentage()} + ' %'"></span></td>
             <td class="align-middle"><span th:text="${report.getBonusPoint()}"></span></td>
         </tr>
         </tbody>

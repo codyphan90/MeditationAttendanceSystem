@@ -7,6 +7,7 @@ import edu.mum.waa.repository.AttendanceRepository;
 import edu.mum.waa.repository.BlockRepository;
 import edu.mum.waa.repository.UserRepository;
 import edu.mum.waa.service.AttendanceService;
+import edu.mum.waa.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -73,6 +74,9 @@ public class WaaApplication implements CommandLineRunner {
     @Autowired
     private AttendanceService attendanceService;
 
+    @Autowired
+    private BlockService blockService;
+
     @Override
     public void run(String... args) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
@@ -82,11 +86,6 @@ public class WaaApplication implements CommandLineRunner {
         UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"));
         UserEntity user4 = new UserEntity(8,"Tom", "123456", null);
         UserEntity user5 = new UserEntity(9,"Xing", "123456", null);
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
-        userRepository.save(user4);
-        userRepository.save(user5);
 
         BlockEntity block1 = new BlockEntity(1,"Feb2019", "STC", 8,
                 LocalDate.parse("02/01/2019", formatter),
@@ -101,45 +100,25 @@ public class WaaApplication implements CommandLineRunner {
                 LocalDate.parse("04/01/2019", formatter),
                 LocalDate.parse("04/30/2019", formatter),
                 22);
-        blockRepository.save(block1);
-        blockRepository.save(block2);
-        blockRepository.save(block3);
 
-        user1.getBlockList().add(block1);
-        user1.getBlockList().add(block2);
-        user2.getBlockList().add(block1);
-        user2.getBlockList().add(block2);
-        user3.getBlockList().add(block2);
-        user3.getBlockList().add(block3);
+        blockService.assignUserToBlock(user1, block1);
+        blockService.assignUserToBlock(user1, block2);
+        blockService.assignUserToBlock(user2, block1);
+        blockService.assignUserToBlock(user2, block2);
+        blockService.assignUserToBlock(user3, block2);
+        blockService.assignUserToBlock(user3, block3);
 
-        block1.getUserList().add(user1);
-        block1.getUserList().add(user2);
-        block2.getUserList().add(user1);
-        block2.getUserList().add(user2);
-        block2.getUserList().add(user3);
-        block3.getUserList().add(user3);
-
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
-        userRepository.save(user4);
-        userRepository.save(user5);
-
-        blockRepository.save(block1);
-        blockRepository.save(block2);
-
-
-        BlockEntity blockEntity = blockRepository.findByBlockIdEquals(2);
-        System.out.println("blockEntity has some User:");
-        blockEntity.getUserList().forEach( userEntity -> {
-            System.out.println(userEntity.getName());
-        });
-
-        System.out.println("user has:");
-        UserEntity userEntity = userRepository.findByUseridEquals(5);
-        userEntity.getBlockList().forEach(blockEntity1 -> {
-            System.out.println(blockEntity1.getName());
-        });
+//        BlockEntity blockEntity = blockRepository.findByBlockIdEquals(2);
+//        System.out.println("blockEntity has some User:");
+//        blockEntity.getUserList().forEach( userEntity -> {
+//            System.out.println(userEntity.getName());
+//        });
+//
+//        System.out.println("user has:");
+//        UserEntity userEntity = userRepository.findByUseridEquals(5);
+//        userEntity.getBlockList().forEach(blockEntity1 -> {
+//            System.out.println(blockEntity1.getName());
+//        });
 
 
         //Create Attendance data
