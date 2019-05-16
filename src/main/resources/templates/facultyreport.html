@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/faculty.js}"></script>
+    <meta charset="UTF-8">
+    <title>Faculty Report</title>
+</head>
+<body>
+<div>
+    <br>
+    <div id="selectBlock" style="text-align: center">
+
+    <label>Course: </label>
+    <select  id="course">
+        <option value="0">-- Select Course --</option>
+        <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"
+                th:text="${block.getCourse() + ' - ' + block.getName()}"></option>
+    </select>
+    </div>
+
+    <!--    Report Table-->
+    <br>
+    <br>
+    <br>
+    <div id="reportTable">
+
+    </div>
+</div>
+</body>
+</html>

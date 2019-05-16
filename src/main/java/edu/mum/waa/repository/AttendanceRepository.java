@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface AttendanceRepository extends JpaRepository<AttendanceEntity, Integer> {
 
-    @Query("Select a from AttendanceEntity a where (a.studentId = :studentId or a.cardId = :cardId) and (a.date BETWEEN :startDate AND :endDate)")
-    List<AttendanceEntity>  findAttendanceInBlock(@Param("studentId") Integer studentId,
-                                                 @Param("cardId") Long cardId,
-                                                 @Param("startDate") LocalDate startDate,
-                                                 @Param("endDate") LocalDate endDate);
+    @Query("Select count(a) from AttendanceEntity a where (a.studentId = :studentId or a.cardId = :cardId) and (a.date BETWEEN :startDate AND :endDate)")
+    Integer countAttend(@Param("studentId") Integer studentId,
+                        @Param("cardId") Long cardId,
+                        @Param("startDate") LocalDate startDate,
+                        @Param("endDate") LocalDate endDate);
 }

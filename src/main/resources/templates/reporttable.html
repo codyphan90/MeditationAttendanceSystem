@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment="reportTable" th:unless="${#lists.isEmpty(reports)}" id="report-table">
+    <table class="table table-striped table-bordered table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+        <thead>
+        <tr>
+            <th class="align-middle">Student Name</th>
+            <th class="align-middle">Attended/Total Session</th>
+            <th class="align-middle">Percentage</th>
+            <th class="align-middle">Bonus Point</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="report : ${reports}">
+            <td class="align-middle"><span th:text="${report.getStudentName()}"></span></td>
+            <td class="align-middle"><span th:text="${report.getAttendedCount() + '/' + report.getTotalSession()}"></span></td>
+            <td class="align-middle"><span th:text="${report.getPercentage()}"></span></td>
+            <td class="align-middle"><span th:text="${report.getBonusPoint()}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
