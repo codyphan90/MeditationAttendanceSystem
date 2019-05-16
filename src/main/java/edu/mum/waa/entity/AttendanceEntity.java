@@ -29,6 +29,19 @@ public class AttendanceEntity {
     public AttendanceEntity() {
     }
 
+    public AttendanceEntity(Integer studentId, LocalDate date, String type) {
+        this.studentId = studentId;
+        this.date = date;
+        this.type = type;
+    }
+
+    public AttendanceEntity(Long cardId, LocalDate date, String type, String location) {
+        this.cardId = cardId;
+        this.date = date;
+        this.type = type;
+        this.location = location;
+    }
+
     public AttendanceEntity(Integer studentId, Long cardId, LocalDate date, String type, String location) {
         this.studentId = studentId;
         this.cardId = cardId;
