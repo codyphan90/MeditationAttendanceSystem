@@ -1,28 +1,21 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Boot Thymeleaf + Spring Security</title>
-
-    <div th:replace="fragments/header :: header-css"/>
-
+    <title>Welcome to the Mediation Management application! Get started quickly by signing up!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 </head>
 <body>
-
-<div th:replace="fragments/header :: header"/>
-
+<div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container">
-
-    <div class="starter-template">
-        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-        <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
-        <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
-        <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            Welcome!
+        </div>
     </div>
-
 </div>
-<!-- /.container -->
-
-<div th:replace="fragments/footer :: footer"/>
-
+<div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 </body>
 </html>

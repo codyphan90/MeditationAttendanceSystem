@@ -1,6 +1,7 @@
 package edu.mum.waa;
 
 import edu.mum.waa.entity.BlockEntity;
+import edu.mum.waa.entity.RoleEntity;
 import edu.mum.waa.entity.UserEntity;
 import edu.mum.waa.repository.BlockRepository;
 import edu.mum.waa.repository.UserRepository;
@@ -12,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,11 +30,15 @@ public class WaaApplicationTests {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
 
-        UserEntity user1 = new UserEntity(5,"Viet Anh", "123456", new Long("987013"), "Student");
-        UserEntity user2 = new UserEntity(6,"Cong Pham", "123456", new Long("987033"), "Student");
-        UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"), "Student");
-        UserEntity user4 = new UserEntity(8,"Tom", "123456", null, "Faculty");
-        UserEntity user5 = new UserEntity(9,"Xing", "123456", null, "Faculty");
+        UserEntity user1 = new UserEntity(5,"Viet Anh", "123456", new Long("987013"));
+        UserEntity user2 = new UserEntity(6,"Cong Pham", "123456", new Long("987033"));
+        Set<RoleEntity> roles = new HashSet<>();
+        RoleEntity admin = new RoleEntity("ADMIN");
+        roles.add(admin);
+        user2.setRoles(roles);
+        UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"));
+        UserEntity user4 = new UserEntity(8,"Tom", "123456", null);
+        UserEntity user5 = new UserEntity(9,"Xing", "123456", null);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
@@ -78,7 +85,7 @@ public class WaaApplicationTests {
         });
 
         System.out.println("user has:");
-        UserEntity userEntity = userRepository.findByUserIdEquals(5);
+        UserEntity userEntity = userRepository.findByUseridEquals(5);
         userEntity.getBlockList().forEach(blockEntity1 -> {
             System.out.println(blockEntity1.getName());
         });

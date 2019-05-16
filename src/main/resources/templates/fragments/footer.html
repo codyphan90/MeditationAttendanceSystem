@@ -2,13 +2,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div th:fragment="footer">
-
-    <div class="container">
-
-        <footer>
+    <footer class="page-footer font-small blue pt-4">
+        <div class="container">
             <!-- this is footer -->
             © 2019 WAA PROJECT
             <span sec:authorize="isAuthenticated()">
@@ -16,13 +16,8 @@
                 Roles: <span sec:authentication="principal.authorities"></span> |
                 <a th:href="@{/logout}">Sign Out</a>
             </span>
-
-            <script type="text/javascript"
-                    src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-        </footer>
-    </div>
-
+        </div>
+    </footer>
 </div>
 </body>
 </html>

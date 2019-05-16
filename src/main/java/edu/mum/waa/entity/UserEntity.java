@@ -1,27 +1,36 @@
 package edu.mum.waa.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="USER")
 public class UserEntity {
+
+
     @Id
     @Column(name="id", nullable = false)
-    private Integer userId;
+    private Integer userid;
 
     @Column(name="Name")
     private String name;
 
-    @Column(name="Password")
+    @Column(name="Password", nullable = false)
+    @NotEmpty
     private String password;
 
     @Column(name="Card_Id")
     private Long cardId;
 
-    @Column(name="Role")
-    private String role;
+    @Column(name = "active")
+    private int active = 1;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_block",
@@ -32,20 +41,19 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(Integer id, String name, String password, Long cardId, String role) {
-        this.userId = id;
+    public UserEntity(Integer userId, String name, String password, Long cardId) {
+        this.userid = userId;
         this.name = name;
         this.password = password;
         this.cardId = cardId;
-        this.role = role;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 
-    public void setUserId(Integer userId) {
-        userId = userId;
+    public Set<RoleEntity> getRoles() {
+        return roles;
     }
 
     public String getName() {
@@ -72,15 +80,27 @@ public class UserEntity {
         this.cardId = cardId;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public Set<BlockEntity> getBlockList() {
         return blockList;
+    }
+
+    public void setBlockList(Set<BlockEntity> blockList) {
+        this.blockList = blockList;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public int getActive() {
+        return active;
     }
 }
