@@ -78,7 +78,7 @@ public class WaaApplicationTests {
         blockRepository.save(block2);
 
 
-        BlockEntity blockEntity = blockRepository.findByNameEquals("March 2019");
+        BlockEntity blockEntity = blockRepository.findByBlockIdEquals(2);
         System.out.println("blockEntity has some User:");
         blockEntity.getUserList().forEach( userEntity -> {
             System.out.println(userEntity.getName());

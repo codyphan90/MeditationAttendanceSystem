@@ -77,103 +77,111 @@ public class WaaApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
 
-//        UserEntity user1 = new UserEntity(5,"Viet Anh", "123456", new Long("987013"), "Student");
-//        UserEntity user2 = new UserEntity(6,"Cong Pham", "123456", new Long("987033"), "Student");
-//        UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"), "Student");
-//        UserEntity user4 = new UserEntity(8,"Tom", "123456", null, "Faculty");
-//        UserEntity user5 = new UserEntity(9,"Xing", "123456", null, "Faculty");
-//        userRepository.save(user1);
-//        userRepository.save(user2);
-//        userRepository.save(user3);
-//        userRepository.save(user4);
-//        userRepository.save(user5);
-//
-//        BlockEntity block1 = new BlockEntity(1,"Feb 2019", "STC 2019", 8,
-//                LocalDate.parse("02/01/2019", formatter),
-//                LocalDate.parse("02/28/2019", formatter),
-//                20);
-//        BlockEntity block2 = new BlockEntity(2,"March 2019", "MPP 2019", 9,
-//                LocalDate.parse("03/01/2019", formatter),
-//                LocalDate.parse("03/31/2019", formatter),
-//                22);
-//
-//        BlockEntity block3 = new BlockEntity(3,"April 2019", "WAA 2019", 9,
-//                LocalDate.parse("04/01/2019", formatter),
-//                LocalDate.parse("04/30/2019", formatter),
-//                22);
-//        blockRepository.save(block1);
-//        blockRepository.save(block2);
-//        blockRepository.save(block3);
-//
-//        user1.getBlockList().add(block1);
-//        user1.getBlockList().add(block2);
-//        user2.getBlockList().add(block1);
-//        user2.getBlockList().add(block2);
-//        user3.getBlockList().add(block2);
-//        user3.getBlockList().add(block3);
-//
-//        block1.getUserList().add(user1);
-//        block1.getUserList().add(user2);
-//        block2.getUserList().add(user1);
-//        block2.getUserList().add(user2);
-//        block2.getUserList().add(user3);
-//        block3.getUserList().add(user3);
-//
-//        userRepository.save(user1);
-//        userRepository.save(user2);
-//        userRepository.save(user3);
-//        userRepository.save(user4);
-//        userRepository.save(user5);
-//
-//        blockRepository.save(block1);
-//        blockRepository.save(block2);
-//
-//
-//        BlockEntity blockEntity = blockRepository.findByNameEquals("March 2019");
-//        System.out.println("blockEntity has some User:");
-//        blockEntity.getUserList().forEach( userEntity -> {
-//            System.out.println(userEntity.getName());
-//        });
-//
-//        System.out.println("user has:");
-//        UserEntity userEntity = userRepository.findByUserIdEquals(5);
-//        userEntity.getBlockList().forEach(blockEntity1 -> {
-//            System.out.println(blockEntity1.getName());
-//        });
-//
-//
-//        //Create Attendance data
-//        AttendanceEntity attendanceEntity1 = new AttendanceEntity(5, null,
-//                LocalDate.parse("02/20/2019", formatter), "AM", "DB");
-//
-//        AttendanceEntity attendanceEntity2 = new AttendanceEntity(5, null,
-//                LocalDate.parse("02/21/2019", formatter), "AM", "DB");
-//
-//        AttendanceEntity attendanceEntity3 = new AttendanceEntity(null, new Long("987013"),
-//                LocalDate.parse("02/13/2019", formatter), "AM", "DB");
-//
-//        AttendanceEntity attendanceEntity4 = new AttendanceEntity(null, new Long("987013"),
-//                LocalDate.parse("03/15/2019", formatter), "AM", "DB");
-//
-//        AttendanceEntity attendanceEntity5 = new AttendanceEntity(null, new Long("987033"),
-//                LocalDate.parse("02/20/2019", formatter), "AM", "DB");
-//
-//        AttendanceEntity attendanceEntity6 = new AttendanceEntity(null, new Long("987044"),
-//                LocalDate.parse("03/01/2019", formatter), "AM", "DB");
-//
-//        AttendanceEntity attendanceEntity7 = new AttendanceEntity(null, new Long("987044"),
-//                LocalDate.parse("04/01/2019", formatter), "AM", "DB");
-//
-//
-//        attendanceRepository.save(attendanceEntity1);
-//        attendanceRepository.save(attendanceEntity2);
-//        attendanceRepository.save(attendanceEntity3);
-//        attendanceRepository.save(attendanceEntity4);
-//        attendanceRepository.save(attendanceEntity5);
-//        attendanceRepository.save(attendanceEntity6);
-//        attendanceRepository.save(attendanceEntity7);
-//
-//        System.out.println("Size = " + attendanceService.getReport("March 2019"));
+        UserEntity user1 = new UserEntity(5,"Viet Anh", "123456", new Long("987013"));
+        UserEntity user2 = new UserEntity(6,"Cong Pham", "123456", new Long("987033"));
+        UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"));
+        UserEntity user4 = new UserEntity(8,"Tom", "123456", null);
+        UserEntity user5 = new UserEntity(9,"Xing", "123456", null);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
+        userRepository.save(user4);
+        userRepository.save(user5);
+
+        BlockEntity block1 = new BlockEntity(1,"Feb2019", "STC", 8,
+                LocalDate.parse("02/01/2019", formatter),
+                LocalDate.parse("02/28/2019", formatter),
+                20);
+        BlockEntity block2 = new BlockEntity(2,"March2019", "WAP", 9,
+                LocalDate.parse("03/01/2019", formatter),
+                LocalDate.parse("03/31/2019", formatter),
+                22);
+
+        BlockEntity block3 = new BlockEntity(3,"April2019", "WAA", 9,
+                LocalDate.parse("04/01/2019", formatter),
+                LocalDate.parse("04/30/2019", formatter),
+                22);
+        blockRepository.save(block1);
+        blockRepository.save(block2);
+        blockRepository.save(block3);
+
+        user1.getBlockList().add(block1);
+        user1.getBlockList().add(block2);
+        user2.getBlockList().add(block1);
+        user2.getBlockList().add(block2);
+        user3.getBlockList().add(block2);
+        user3.getBlockList().add(block3);
+
+        block1.getUserList().add(user1);
+        block1.getUserList().add(user2);
+        block2.getUserList().add(user1);
+        block2.getUserList().add(user2);
+        block2.getUserList().add(user3);
+        block3.getUserList().add(user3);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
+        userRepository.save(user4);
+        userRepository.save(user5);
+
+        blockRepository.save(block1);
+        blockRepository.save(block2);
+
+
+        BlockEntity blockEntity = blockRepository.findByBlockIdEquals(2);
+        System.out.println("blockEntity has some User:");
+        blockEntity.getUserList().forEach( userEntity -> {
+            System.out.println(userEntity.getName());
+        });
+
+        System.out.println("user has:");
+        UserEntity userEntity = userRepository.findByUseridEquals(5);
+        userEntity.getBlockList().forEach(blockEntity1 -> {
+            System.out.println(blockEntity1.getName());
+        });
+
+
+        //Create Attendance data
+        AttendanceEntity attendanceEntity1 = new AttendanceEntity(5, null,
+                LocalDate.parse("02/20/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity2 = new AttendanceEntity(5, null,
+                LocalDate.parse("02/21/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity3 = new AttendanceEntity(null, new Long("987013"),
+                LocalDate.parse("03/13/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity4 = new AttendanceEntity(null, new Long("987013"),
+                LocalDate.parse("03/15/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity5 = new AttendanceEntity(null, new Long("987013"),
+                LocalDate.parse("03/16/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity6 = new AttendanceEntity(null, new Long("987013"),
+                LocalDate.parse("03/17/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity7 = new AttendanceEntity(null, new Long("987033"),
+                LocalDate.parse("02/20/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity8 = new AttendanceEntity(null, new Long("987044"),
+                LocalDate.parse("03/01/2019", formatter), "AM", "DB");
+
+        AttendanceEntity attendanceEntity9 = new AttendanceEntity(null, new Long("987044"),
+                LocalDate.parse("04/01/2019", formatter), "AM", "DB");
+
+
+        attendanceRepository.save(attendanceEntity1);
+        attendanceRepository.save(attendanceEntity2);
+        attendanceRepository.save(attendanceEntity3);
+        attendanceRepository.save(attendanceEntity4);
+        attendanceRepository.save(attendanceEntity5);
+        attendanceRepository.save(attendanceEntity6);
+        attendanceRepository.save(attendanceEntity7);
+        attendanceRepository.save(attendanceEntity8);
+        attendanceRepository.save(attendanceEntity9);
+
+//        attendanceService.getReport(2);
 
     }
 }
