@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ErrorController {
     @RequestMapping(value = "/access-denied", method = RequestMethod.GET)
     public String accessDenied() {
-        return "403";
+        return "/error/403";
     }
+
+    @RequestMapping("/")
+    public String general() {return "error";}
 }

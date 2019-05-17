@@ -20,7 +20,7 @@
 <body class="text-center">
 <form autocomplete="off" action="#" th:action="@{/registration}"
       th:object="${user}" method="post" class="form-signin">
-    <img class="mb-4" src="https://cdn4.iconfinder.com/data/icons/yoga-meditation-exercise-hexagon/128/15-512.png" alt="" width="72" height="72">
+    <a th:href="@{/}"><img class="mb-4" src="https://cdn4.iconfinder.com/data/icons/yoga-meditation-exercise-hexagon/128/15-512.png" alt="" width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Registration Form</h1>
     <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
            class="validation-message"></label>
@@ -37,11 +37,12 @@
            placeholder="Password" class="form-control" required/> <label
         th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
         class="validation-message"></label>
-    <select class="form-control" id="roles" th:field="*{roles}" size="5" multiple="true">
+    <select class="form-control" id="roles" th:field="*{roles}" size="5" multiple="true" required>
         <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.role}">
         </option>
     </select>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <a th:href="@{/login}">Already have an account? Log In!</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2019 WAA PROJECT</p>
 </form>
 </body>
