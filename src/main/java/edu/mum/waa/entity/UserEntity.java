@@ -25,7 +25,7 @@ public class UserEntity {
     @Column(name="Card_Id")
     private Long cardId;
 
-    @Column(name = "active")
+    @Column(name = "Active")
     private int active = 1;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -38,14 +38,18 @@ public class UserEntity {
     inverseJoinColumns = {@JoinColumn(name="Block_Id")})
     private Set<BlockEntity> blockList = new HashSet<>();
 
+    @Column(name="Entry")
+    private String entry;
+
     public UserEntity() {
     }
 
-    public UserEntity(Integer userId, String name, String password, Long cardId) {
+    public UserEntity(Integer userId, String name, String password, Long cardId, String entry) {
         this.userid = userId;
         this.name = name;
         this.password = password;
         this.cardId = cardId;
+        this.entry = entry;
     }
 
     public void setRoles(Set<RoleEntity> roles) {
@@ -102,5 +106,13 @@ public class UserEntity {
 
     public int getActive() {
         return active;
+    }
+
+    public String getEntry() {
+        return entry;
+    }
+
+    public void setEntry(String entry) {
+        this.entry = entry;
     }
 }

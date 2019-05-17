@@ -11,7 +11,7 @@
     <table class="table table-striped table-bordered table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
         <thead>
         <tr>
-            <th class="align-middle">Student Name</th>
+            <th class="align-middle">StudentId</th>
             <th class="align-middle">Attended/Total Session</th>
             <th class="align-middle">Percentage</th>
             <th class="align-middle">Bonus Point</th>
@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         <tr th:each="report : ${reports}">
-            <td class="align-middle"><span th:text="${report.getStudentName()}"></span></td>
+            <td class="align-middle"><span th:text="${report.getStudentId()}"></span></td>
             <td class="align-middle"><span th:text="${report.getAttendedCount() + '/' + report.getTotalSession()}"></span></td>
             <td class="align-middle"><span th:text="${report.getPercentage()} + ' %'"></span></td>
             <td class="align-middle"><span th:text="${report.getBonusPoint()}"></span></td>

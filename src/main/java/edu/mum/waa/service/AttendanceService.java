@@ -1,6 +1,5 @@
 package edu.mum.waa.service;
 
-import edu.mum.waa.entity.AttendanceEntity;
 import edu.mum.waa.entity.BlockEntity;
 import edu.mum.waa.entity.UserEntity;
 import edu.mum.waa.repository.AttendanceRepository;
@@ -28,24 +27,41 @@ public class AttendanceService {
 
     private static DecimalFormat df2 = new DecimalFormat("#.##");
 
-    public List<StudentReport> getReport(Integer blockId) {
+    public List<StudentReport> getBlockReport(Integer blockId) {
         BlockEntity blockEntity = blockRepository.findByBlockIdEquals(blockId);
         List<StudentReport> studentReports = new ArrayList<>();
         if (blockEntity == null) return studentReports;
         blockEntity.getUserList().forEach(student -> {
-            Integer attendedCount = countAttendance(student, blockEntity);
+            Integer attendedCount = countAttendanceTM(student, blockEntity);
             Integer sessionTotal = blockEntity.getTotalDate();
             Double percent = new Double(df2.format((double) attendedCount.doubleValue() / sessionTotal.doubleValue() * 100));
-            StudentReport studentReport = new StudentReport(blockEntity.getName(), student.getName(), attendedCount, sessionTotal, percent, convertBonus(percent));
+            StudentReport studentReport = new StudentReport(blockEntity.getName(), student.getUserid(), attendedCount, sessionTotal, percent, convertBonus(percent));
             studentReports.add(studentReport);
         });
         Collections.sort(studentReports);
         return studentReports;
     }
 
-    public Integer countAttendance(UserEntity student, BlockEntity blockEntity) {
+    public List<StudentReport> getEntryReport(String entryId) {
+        List<UserEntity> userEntities = userRepository.findAllByEntryEquals(entryId);
+        List<StudentReport> studentReports = new ArrayList<>();
+        userEntities.forEach(student -> {
+            Integer sessionTotal = 0;
+            Integer totalAttended = 0;
+            for (BlockEntity blockEntity: student.getBlockList()) {
+                sessionTotal += blockEntity.getTotalDate();
+                totalAttended += countAttendanceTM(student, blockEntity);
+            }
+            Double percent = totalAttended == 0? 0 : new Double(df2.format((double) totalAttended.doubleValue() / sessionTotal.doubleValue() * 100));
+            StudentReport studentReport = new StudentReport(null, student.getUserid(), totalAttended, sessionTotal, percent, convertBonus(percent));
+            studentReports.add(studentReport);
+        });
+        return studentReports;
+    }
+
+    public Integer countAttendanceTM(UserEntity student, BlockEntity blockEntity) {
         return attendanceRepository.countAttend(student.getUserid(), student.getCardId(),
-                blockEntity.getStartDate(), blockEntity.getEndDate());
+                blockEntity.getStartDate(), blockEntity.getEndDate(),"AM");
     }
 
     public Double convertBonus(Double percent) {

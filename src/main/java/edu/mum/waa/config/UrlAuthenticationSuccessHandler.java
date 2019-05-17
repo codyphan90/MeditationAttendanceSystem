@@ -72,7 +72,7 @@ public class UrlAuthenticationSuccessHandler
         } else if (isAdmin) {
             return "/admin/process";
         } else if (isFaculty) {
-            return "/faculty";
+            return "/";
         }else {
             throw new IllegalStateException();
         }

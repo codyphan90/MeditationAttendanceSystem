@@ -1,5 +1,6 @@
 package edu.mum.waa;
 
+import edu.mum.waa.Utils.Common;
 import edu.mum.waa.entity.AttendanceEntity;
 import edu.mum.waa.entity.BlockEntity;
 import edu.mum.waa.entity.UserEntity;
@@ -81,25 +82,39 @@ public class WaaApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
 
-        UserEntity user1 = new UserEntity(5,"Viet Anh", "123456", new Long("987013"));
-        UserEntity user2 = new UserEntity(6,"Cong Pham", "123456", new Long("987033"));
-        UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"));
-        UserEntity user4 = new UserEntity(8,"Tom", "123456", null);
-        UserEntity user5 = new UserEntity(9,"Xing", "123456", null);
+        UserEntity user1 = new UserEntity(5,"Viet Anh", "123", new Long("987013"), "Feb2019");
+        UserEntity user2 = new UserEntity(6,"Cong Pham", "123456", new Long("987033"), "Feb2019");
+        UserEntity user3 = new UserEntity(7,"Dawbeke", "123456", new Long("987044"), "Nov2018");
+        UserEntity user4 = new UserEntity(8,"Tom", "123456", null, null);
+        UserEntity user5 = new UserEntity(9,"Xing", "123456", null, null);
 
-        BlockEntity block1 = new BlockEntity(1,"Feb2019", "STC", 8,
+        BlockEntity block1 = new BlockEntity(1,"Feb2019", "STC", 3,
                 LocalDate.parse("02/01/2019", formatter),
-                LocalDate.parse("02/28/2019", formatter),
-                20);
-        BlockEntity block2 = new BlockEntity(2,"March2019", "WAP", 9,
+                LocalDate.parse("02/26/2019", formatter));
+        BlockEntity block2 = new BlockEntity(2,"March2019", "WAP", 3,
                 LocalDate.parse("03/01/2019", formatter),
-                LocalDate.parse("03/31/2019", formatter),
-                22);
+                LocalDate.parse("03/26/2019", formatter));
 
-        BlockEntity block3 = new BlockEntity(3,"April2019", "WAA", 9,
+        BlockEntity block3 = new BlockEntity(3,"April2019", "WAA", 3,
                 LocalDate.parse("04/01/2019", formatter),
-                LocalDate.parse("04/30/2019", formatter),
-                22);
+                LocalDate.parse("04/25/2019", formatter));
+
+        BlockEntity block4 = new BlockEntity(11,"November2016", "EA", 3,
+                LocalDate.parse("11/01/2016", formatter),
+                LocalDate.parse("11/25/2016", formatter));
+
+
+        BlockEntity block5 = new BlockEntity(12,"December2016", "ASD", 3,
+                LocalDate.parse("12/01/2016", formatter),
+                LocalDate.parse("12/26/2016", formatter));
+
+        BlockEntity block6 = new BlockEntity(13,"January2017", "DBMS", 3,
+                LocalDate.parse("01/01/2017", formatter),
+                LocalDate.parse("01/25/2017", formatter));
+
+        blockRepository.save(block4);
+        blockRepository.save(block5);
+        blockRepository.save(block6);
 
         blockService.assignUserToBlock(user1, block1);
         blockService.assignUserToBlock(user1, block2);
@@ -160,7 +175,8 @@ public class WaaApplication implements CommandLineRunner {
         attendanceRepository.save(attendanceEntity8);
         attendanceRepository.save(attendanceEntity9);
 
-//        attendanceService.getReport(2);
+//        attendanceService.getBlockReport(2);
+
 
     }
 }

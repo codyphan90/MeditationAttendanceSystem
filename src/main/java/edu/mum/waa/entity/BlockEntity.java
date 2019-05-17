@@ -1,5 +1,7 @@
 package edu.mum.waa.entity;
 
+import edu.mum.waa.Utils.Common;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -39,14 +41,14 @@ public class BlockEntity {
     public BlockEntity() {
     }
 
-    public BlockEntity(Integer blockId, String name, String course, Integer professorId, LocalDate startDate, LocalDate endDate, Integer totalDate) {
+    public BlockEntity(Integer blockId, String name, String course, Integer professorId, LocalDate startDate, LocalDate endDate) {
         this.blockId = blockId;
         this.name = name;
         this.course = course;
         this.professorId = professorId;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.totalDate = totalDate;
+        this.totalDate = Common.calcWeekDays(startDate, endDate);
     }
 
     public Integer getBlockId() {

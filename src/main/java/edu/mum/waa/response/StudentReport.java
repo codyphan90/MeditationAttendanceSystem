@@ -2,7 +2,7 @@ package edu.mum.waa.response;
 
 public class StudentReport implements Comparable< StudentReport > {
     private String blockName;
-    private String studentName;
+    private Integer studentId;
     private  Integer attendedCount;
     private  Integer totalSession;
     private  Double percentage;
@@ -10,9 +10,9 @@ public class StudentReport implements Comparable< StudentReport > {
 
 
 
-    public StudentReport(String blockName, String studentName, Integer attendedCount, Integer totalSession, Double percentage, Double bonusPoint) {
+    public StudentReport(String blockName, Integer studentId, Integer attendedCount, Integer totalSession, Double percentage, Double bonusPoint) {
         this.blockName = blockName;
-        this.studentName = studentName;
+        this.studentId = studentId;
         this.attendedCount = attendedCount;
         this.totalSession = totalSession;
         this.percentage = percentage;
@@ -27,12 +27,12 @@ public class StudentReport implements Comparable< StudentReport > {
         this.blockName = blockName;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public Integer getAttendedCount() {
@@ -70,7 +70,7 @@ public class StudentReport implements Comparable< StudentReport > {
     @Override
     public String toString() {
         return "StudentReport{" +
-                "studentName='" + studentName + '\'' +
+                "studentId='" + studentId + '\'' +
                 ", attendedCount=" + attendedCount +
                 ", totalSession=" + totalSession +
                 ", percentage=" + percentage +
@@ -80,6 +80,6 @@ public class StudentReport implements Comparable< StudentReport > {
 
     @Override
     public int compareTo(StudentReport s) {
-        return this.getStudentName().compareTo(s.getStudentName());
+        return this.getStudentId().compareTo(s.getStudentId());
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+
 @Service
 public class BlockService {
 
@@ -23,6 +24,10 @@ public class BlockService {
         return blockRepository.findAllByProfessorIdEquals(professorId);
     }
 
+    public List<BlockEntity> getAllBlock() {
+        return blockRepository.findAll();
+    }
+
     public BlockEntity createBlock(BlockEntity blockEntity) {
         return blockRepository.save(blockEntity);
     }
@@ -31,6 +36,15 @@ public class BlockService {
     public void assignUserToBlock(UserEntity userEntity, BlockEntity blockEntity) {
 //        userRepository.save(userEntity);
 //        blockRepository.save(blockEntity);
+        userEntity.getBlockList().add(blockEntity);
+        blockEntity.getUserList().add(userEntity);
+
+        userRepository.save(userEntity);
+        blockRepository.save(blockEntity);
+    }
+
+    public void assignUserToBlock(UserEntity userEntity, Integer blockId) {
+        BlockEntity blockEntity = blockRepository.findByBlockIdEquals(blockId);
         userEntity.getBlockList().add(blockEntity);
         blockEntity.getUserList().add(userEntity);
 

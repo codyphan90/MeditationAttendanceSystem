@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    <title>Faculty Report</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.1/examples/cover/cover.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/faculty.js}"></script>
+    <meta charset="UTF-8">
+    <title>Faculty Report</title>
+</head>
+<!--<body>-->
+<!--<div>-->
+<!--    <br>-->
+<!--    <div id="selectBlock" style="text-align: center">-->
+
+<!--    <label>Course: </label>-->
+<!--    <select  id="course">-->
+<!--        <option value="0">&#45;&#45; Select Course &#45;&#45;</option>-->
+<!--        <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"-->
+<!--                th:text="${block.getCourse() + ' - ' + block.getName()}"></option>-->
+<!--    </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash;    Report Table&ndash;&gt;-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <div id="reportTable">-->
+
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+
+<body class="text-center" data-gr-c-s-loaded="true" style="background-color: #333">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace="~{fragments/header :: header}">Header</header>
+    <div id="main" style="background-color: white">
+
+    <div id="selectBlock" style="text-align: center">
+        <label>Block: </label>
+        <select  id="block">
+            <option value="0">-- Select Block --</option>
+            <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"
+                    th:text="${block.getCourse() + ' - ' + block.getName()}"></option>
+        </select>
+    </div>
+
+    <!--    Report Table-->
+    <br>
+    <br>
+    <br>
+    <div id="reportTable">
+
+    </div>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}">
+    </footer>
+
+</div>
+</body>
+</html>

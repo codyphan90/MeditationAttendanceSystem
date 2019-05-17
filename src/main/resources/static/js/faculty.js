@@ -1,13 +1,17 @@
 $(document).ready(function () {
-    console.log("@@@@@")
-    $("#course").change(function () {
+    $("#block").change(function () {
+        console.log("$$$$$$$")
         $("#reportTable").innerHTML = '';
-        let blockId = $('#course option:selected').val();
-        console.log("blockId = " + blockId);
-        if (blockId === 0) {
-            console.log("testttttt");
-        }
-        var url= '/faculty/report/' + blockId;
+        let blockId = $('#block option:selected').val();
+        var url= '/faculty/block/' + blockId;
+        console.log(url)
+        $("#reportTable").load(url);
+    });
+
+    $("#entry").change(function () {
+        $("#reportTable").innerHTML = '';
+        let entryId = $('#entry option:selected').val();
+        var url= '/faculty/entry/' + entryId;
         $("#reportTable").load(url);
     });
 });
