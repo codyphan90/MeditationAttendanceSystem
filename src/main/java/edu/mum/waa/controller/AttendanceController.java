@@ -6,6 +6,7 @@ import edu.mum.waa.response.StudentReport;
 import edu.mum.waa.service.AttendanceService;
 import edu.mum.waa.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,8 @@ public class AttendanceController {
     private AttendanceService attendanceService;
 
     @RequestMapping("/faculty")
-    public String facultyForm(Model model) {
-        List<BlockEntity> blockEntities = blockService.getBlockList(9);
+    public String facultyForm(Authentication authentication, Model model) {
+        List<BlockEntity> blockEntities = blockService.getBlockList(Integer.parseInt(authentication.getName()));
         model.addAttribute("blocks", blockEntities);
         return "facultyreport";
     }
