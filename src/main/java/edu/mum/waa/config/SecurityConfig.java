@@ -60,9 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/login*","/login-error", "/error/**","/registration", "/h2-console/**").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/admin/**", "/faculty/**", "/student/**").hasAuthority("ADMIN")
                 .antMatchers("/faculty/**").hasAuthority("FACULTY")
-                .antMatchers("/user/**").hasAuthority("USER")
+                .antMatchers("/student/**").hasAuthority("USER")
                 .anyRequest().authenticated() //all other urls can be access by any authenticated role
                 .and()
                 .formLogin() //enable form login instead of basic login

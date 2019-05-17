@@ -14,7 +14,7 @@
         <h3 class="masthead-brand"><a th:href="@{/}">Home</a></h3>
         <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" sec:authorize-url="/admin" th:href="@{/admin/process}">Process</a>
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" sec:authorize-url="/faculty" th:href="@{/faculty}">Report</a>
             <a class="nav-link" href="#">Contact</a>
         </nav>
     </div>
