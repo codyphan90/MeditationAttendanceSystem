@@ -97,4 +97,18 @@ public class AttendanceEntity {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        AttendanceEntity attendanceEntity = (AttendanceEntity) obj;
+        if (attendanceEntity == null) return false;
+        Integer id = this.studentId == null ? 0 : this.studentId;
+        Long card = this.cardId == null ? 0L : this.cardId;
+        Integer id1 = attendanceEntity.studentId == null ? 0 : attendanceEntity.studentId;
+        Long card1 = attendanceEntity.cardId == null ? 0L : attendanceEntity.cardId;
+        return  id.equals(id1)
+                && card.equals(card1)
+                && this.date.equals(attendanceEntity.date)
+                && this.type.equals(attendanceEntity.type);
+    }
 }

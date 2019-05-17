@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Access Denied!</title>
+    <title>URL Not Found!</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/sign-in/">
 
@@ -19,16 +19,16 @@
 <body class="text-center" data-gr-c-s-loaded="true">
 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-
     <main role="main" class="inner cover">
 
         <div class="starter-template">
-            <h1>403 - Access is denied</h1>
-            <div th:inline="text"> Oh a sneaky one! you do not have permission to access this page. Please <a th:href="@{/}">back to Home!</a></div>
+            <h1>404 - Mayday, Mayday, URL Down!!!</h1>
+            <div th:inline="text"> Jeez, we cannot find this kind of information you're looking for...</div>
         </div>
+        <p class="lead">
+            <a th:href="@{/}" class="btn btn-lg btn-secondary">Home</a>
+        </p>
     </main>
-    <footer th:replace="~{fragments/footer :: footer}">
-    </footer>
 </div>
 
 </body>

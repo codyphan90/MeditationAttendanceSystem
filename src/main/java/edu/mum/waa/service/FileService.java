@@ -1,7 +1,9 @@
 package edu.mum.waa.service;
 
 import edu.mum.waa.entity.AttendanceEntity;
+import edu.mum.waa.entity.UserEntity;
 import edu.mum.waa.repository.AttendanceRepository;
+import edu.mum.waa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +23,9 @@ public class FileService {
     @Autowired
     AttendanceRepository attendanceRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     public boolean processFile(MultipartFile file) {
         if(file == null || file.isEmpty()) return false;
         try {
@@ -30,12 +35,21 @@ public class FileService {
             DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MM/dd/yy");
             LocalDate date;
-            Integer userId;
-            Long cardId;
+            Integer userId = 0;
+            Long cardId = 0L;
             String type;
             String location;
             AttendanceEntity att = null;
             List<AttendanceEntity> attendanceEntityList = new ArrayList();
+            //get list users
+            List<UserEntity> userEntities = userRepository.findAll();
+            List<Integer> userList = new ArrayList<>();
+            for (UserEntity user : userEntities) {
+                userList.add(user.getUserid());
+                if (user.getCardId() != null) userList.add(user.getCardId().intValue());
+            }
+            //get list attendances
+            List<AttendanceEntity> attendanceEntities = attendanceRepository.findAll();
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 //date, user id, name
@@ -52,7 +66,13 @@ public class FileService {
                      location = data[3];
                      att = new AttendanceEntity(cardId, date, type, location);
                 }
-                attendanceEntityList.add(att);
+                //check user existence
+                //check attendance existence
+                if (att != null
+                        && (userList.contains(userId) || userList.contains(cardId.intValue()))
+                        && !attendanceEntities.contains(att)
+                        && !attendanceEntityList.contains(att))
+                    attendanceEntityList.add(att);
             }
             attendanceRepository.saveAll(attendanceEntityList);
         } catch (UnsupportedEncodingException e) {

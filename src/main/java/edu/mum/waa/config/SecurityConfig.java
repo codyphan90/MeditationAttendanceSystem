@@ -60,9 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/login*","/login-error", "/error/**","/registration", "/h2-console/**").permitAll()
-                .antMatchers("/admin/**", "/faculty/**", "/student/**").hasAuthority("ADMIN")
-                .antMatchers("/faculty/**").hasAuthority("FACULTY")
-                .antMatchers("/student/**").hasAuthority("USER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/faculty/**").hasAnyAuthority("FACULTY","ADMIN")
+                .antMatchers("/student/**").hasAnyAuthority("ADMIN", "USER")
                 .anyRequest().authenticated() //all other urls can be access by any authenticated role
                 .and()
                 .formLogin() //enable form login instead of basic login
@@ -71,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("userId")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
+                .successHandler(new UrlAuthenticationSuccessHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -79,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf()
                 .ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
                 .and()
-                .exceptionHandling().accessDeniedPage("/error/general")
+                .exceptionHandling().accessDeniedPage("/error/access-denied")
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository())
         ;
         http.rememberMe().rememberMeParameter("remember-me").key("uniqueAndSecret");
