@@ -51,22 +51,23 @@
     <header th:replace="~{fragments/header :: header}">Header</header>
     <div id="main" style="background-color: white">
 
-    <div id="selectBlock" style="text-align: center">
-        <label>Block: </label>
-        <select  id="block">
-            <option value="0">-- Select Block --</option>
-            <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"
-                    th:text="${block.getCourse() + ' - ' + block.getName()}"></option>
-        </select>
-    </div>
+        <div id="selectBlock" style="text-align: center">
+            <label>Block: </label>
+            <select id="block">
+                <option value="0">-- Select Block --</option>
+                <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"
+                        th:text="${block.getCourse() + ' - ' + block.getName()}"></option>
+            </select>
+        </div>
+        <br>
+        <br>
 
-    <!--    Report Table-->
-    <br>
-    <br>
-    <br>
-    <div id="reportTable">
-
-    </div>
+        <div id="csvLink"></div>
+        <br>
+        <!--    Report Table-->
+        <div id="reportTable">
+            <br>
+        </div>
     </div>
 
     <footer th:replace="~{fragments/footer :: footer}">

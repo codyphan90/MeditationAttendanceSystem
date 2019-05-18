@@ -1,7 +1,15 @@
 package edu.mum.waa.Utils;
 
+import edu.mum.waa.response.StudentReport;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -14,5 +22,22 @@ public class Common {
 
         //adjust for starting and ending on a Sunday:
         return (int) daysWithoutSunday + (startW == DayOfWeek.SUNDAY ? 1 : 0) + (endW == DayOfWeek.SUNDAY ? 1 : 0);
+    }
+
+    public static void exportCSV(HttpServletResponse response, List<StudentReport> studentReports, String csvFileName)  throws IOException {
+        response.setContentType("text/csv");
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", csvFileName);
+        response.setHeader(headerKey, headerValue);
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] header = { "StudentId", "AttendedCount", "TotalSession", "Percentage", "BonusPoint" };
+        csvWriter.writeHeader(header);
+
+        for (StudentReport studentReport : studentReports) {
+            csvWriter.write(studentReport, header);
+        }
+
+        csvWriter.close();
     }
 }

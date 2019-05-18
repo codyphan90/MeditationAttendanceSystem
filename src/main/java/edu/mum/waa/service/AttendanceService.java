@@ -35,7 +35,7 @@ public class AttendanceService {
             Integer attendedCount = countAttendanceTM(student, blockEntity);
             Integer sessionTotal = blockEntity.getTotalDate();
             Double percent = new Double(df2.format((double) attendedCount.doubleValue() / sessionTotal.doubleValue() * 100));
-            StudentReport studentReport = new StudentReport(blockEntity.getName(), student.getUserid(), attendedCount, sessionTotal, percent, convertBonus(percent));
+            StudentReport studentReport = new StudentReport(student.getUserid(), attendedCount, sessionTotal, percent, convertBonus(percent));
             studentReports.add(studentReport);
         });
         Collections.sort(studentReports);
@@ -53,7 +53,7 @@ public class AttendanceService {
                 totalAttended += countAttendanceTM(student, blockEntity);
             }
             Double percent = totalAttended == 0? 0 : new Double(df2.format((double) totalAttended.doubleValue() / sessionTotal.doubleValue() * 100));
-            StudentReport studentReport = new StudentReport(null, student.getUserid(), totalAttended, sessionTotal, percent, convertBonus(percent));
+            StudentReport studentReport = new StudentReport(student.getUserid(), totalAttended, sessionTotal, percent, convertBonus(percent));
             studentReports.add(studentReport);
         });
         return studentReports;

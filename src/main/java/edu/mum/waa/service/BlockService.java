@@ -24,6 +24,10 @@ public class BlockService {
         return blockRepository.findAllByProfessorIdEquals(professorId);
     }
 
+    public String getBlockName(Integer blockId) {
+        return blockRepository.findByBlockIdEquals(blockId).getName();
+    }
+
     public List<BlockEntity> getAllBlock() {
         return blockRepository.findAll();
     }

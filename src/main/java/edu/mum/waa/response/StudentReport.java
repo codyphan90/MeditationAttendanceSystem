@@ -1,7 +1,6 @@
 package edu.mum.waa.response;
 
 public class StudentReport implements Comparable< StudentReport > {
-    private String blockName;
     private Integer studentId;
     private  Integer attendedCount;
     private  Integer totalSession;
@@ -10,8 +9,7 @@ public class StudentReport implements Comparable< StudentReport > {
 
 
 
-    public StudentReport(String blockName, Integer studentId, Integer attendedCount, Integer totalSession, Double percentage, Double bonusPoint) {
-        this.blockName = blockName;
+    public StudentReport(Integer studentId, Integer attendedCount, Integer totalSession, Double percentage, Double bonusPoint) {
         this.studentId = studentId;
         this.attendedCount = attendedCount;
         this.totalSession = totalSession;
@@ -19,13 +17,6 @@ public class StudentReport implements Comparable< StudentReport > {
         this.bonusPoint = bonusPoint;
     }
 
-    public String getBlockName() {
-        return blockName;
-    }
-
-    public void setBlockName(String blockName) {
-        this.blockName = blockName;
-    }
 
     public Integer getStudentId() {
         return studentId;
