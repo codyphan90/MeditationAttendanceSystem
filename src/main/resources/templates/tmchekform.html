@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Student TM Check</title>
+
+    <link type="text/css"
+          rel="stylesheet"
+          href="css/tmcheckstyle.css">
+
+    <link type="text/css"
+          rel="stylesheet"
+          href="">
+</head>
+
+<body>
+<div id="header">
+    <h2>Student TM/Retreat Cheking </h2>
+</div>
+
+
+<div class="outercont">
+    <form action="#" th:action="@{/savetmcheck}" th:object="${tm}" method="POST">
+
+
+            <div >Student Id
+                <span class="text"><input type="text" th:field="*{student.student_id}" size="30" /></span></div>
+
+
+            <div>
+                Checked Date
+                <span class="checkdate"><input type="date" th:field="*{checkedDate}" size="30"/></span>
+            </div>
+
+
+            <div>
+               <label>TM Type<select th:field="*{tmType}">
+                    <option value="" >--</option>
+                    <option value="tmCheck">TM-Check</option>
+                    <option value="tmRetreat">TM-Retreat</option>
+            </select></label>
+
+            </div>
+
+
+            <div>
+
+                <input type="submit" value="Checked" class="save" />
+            </div>
+
+
+
+
+    </form>
+
+
+</div>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
