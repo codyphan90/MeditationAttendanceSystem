@@ -16,4 +16,8 @@ public interface AttendanceRepository extends JpaRepository<AttendanceEntity, In
                         @Param("startDate") LocalDate startDate,
                         @Param("endDate") LocalDate endDate,
                         @Param("type") String type);
+
+    @Query("Select count (a) from AttendanceEntity a where (a.studentId = :studentId or a.cardId = :cardId)  and a.date= :date  and a.type = :type")
+    Integer getAttendedRecord(@Param("studentId") Integer studentId, @Param("cardId") Long cardId,
+                              @Param("date") LocalDate date, @Param("type") String type);
 }

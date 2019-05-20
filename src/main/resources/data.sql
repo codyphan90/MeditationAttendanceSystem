@@ -8,8 +8,11 @@ create table if not exists persistent_logins (
 
 INSERT INTO USER  VALUES ( 1, 1, null, null,'Admin', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
 INSERT INTO USER  VALUES ( 2, 1,null, 'Feb2019','User', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
-INSERT INTO USER  VALUES ( 3, 1,null, null,'Faculty', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
+INSERT INTO USER  VALUES ( 3, 1,null, null,'Xing', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
+INSERT INTO USER  VALUES ( 4, 1,null, null,'Assad', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
 INSERT INTO USER  VALUES ( 987013, 1, 11001000987013, 'Feb2019','Viet Anh Phan', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
+INSERT INTO USER  VALUES ( 987014, 1, 11001000987014, 'Feb2019','Cong Pham', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
+INSERT INTO USER  VALUES ( 987015, 1, 11001000987015, 'Nov2018','Dawit', '$2a$10$fTbfbqSI0voIRsw1Nrmhj.AoaTuw79uF835uS/UKMyA.tShv9F2AS');
 
 INSERT INTO ROLE VALUES ( 1, 'ADMIN');
 INSERT INTO ROLE VALUES ( 2, 'USER');
@@ -18,6 +21,8 @@ INSERT INTO ROLE VALUES ( 3, 'FACULTY');
 INSERT INTO USER_ROLE VALUES (1,1);
 INSERT INTO USER_ROLE VALUES (2,2);
 INSERT INTO USER_ROLE VALUES (3,3);
+INSERT INTO USER_ROLE VALUES (4,3);
+INSERT INTO USER_ROLE VALUES (987013,2);
 
 insert into Student values(123,'NOV 2018','Dawit','Asefa');
 insert into Student values(124,'Aug 2018','Andulem','Mulgeta');
@@ -40,3 +45,5 @@ insert into TM values(5,'2019-05-11','Tm-Check','125');
 insert into TM values(6,'2019-05-11','Tm-Check','126');
 insert into TM values(7,'2019-04-11','Tm-Check','124');
 insert into TM values(8,'2019-05-11','Tm-Check','127');
+
+

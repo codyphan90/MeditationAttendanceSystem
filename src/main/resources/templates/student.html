@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Report</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/report.js}"></script>
+</head>
+<body>
+<h3 class="masthead-brand"><a th:href="@{/}">Home</a></h3>
+<div id="main" style="text-align: center">
+    <h2>Cumulative Attendance Info</h2>
+    <div id="cumulativeInfo">
+        <p>Total sessions possible: <span th:text="${report.getAttendedCount()}"/></p>
+        <p>Total sessions attended: <span th:text="${report.getTotalSession()}"></span></p>
+        <p>Percent attendance: <span th:text="${report.getPercentage()}"></span>  %</p>
+    </div>
+
+
+        <h2>Attendance Block Detail</h2>
+    <span id="selectBlock">
+        <label>Block: </label>
+        <select id="block">
+            <option value="0">-- Select Block --</option>
+            <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"
+                    th:text="${block.getCourse() + ' - ' + block.getName()}"></option>
+        </select>
+    </span>
+    <div id="studentDetail">
+    </div>
+
+
+<!--        Report Table-->
+    <div id="reportTable">
+        <br>
+    </div>
+</div>
+</body>
+</html>

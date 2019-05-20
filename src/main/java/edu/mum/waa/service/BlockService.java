@@ -36,9 +36,9 @@ public class BlockService {
         return blockRepository.save(blockEntity);
     }
 
-    @Transactional
+//    @Transactional
     public void assignUserToBlock(UserEntity userEntity, BlockEntity blockEntity) {
-//        userRepository.save(userEntity);
+//        userService.save(userEntity);
 //        blockRepository.save(blockEntity);
         userEntity.getBlockList().add(blockEntity);
         blockEntity.getUserList().add(userEntity);
