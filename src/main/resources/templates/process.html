@@ -6,16 +6,17 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/cover/">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.1/examples/cover/cover.css" rel="stylesheet">
+    <link type="text/css"
+          rel="stylesheet"
+          th:href="@{/css/main.css}">
 </head>
 <body>
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header th:replace="~{fragments/header :: header}">Header</header>
-    <main>
+    <nav th:replace="~{fragments/header :: header}">Header</nav>
+    <div class="main-content">
         <form th:action="@{/admin/upload}" method="POST" enctype="multipart/form-data"
-              class="form-horizontal" role="form">
+              class="form-control-sm" role="form">
             <fieldset>
                 <legend class="col-sm-9">Upload a file to process data (100MB): </legend>
                 <div class="form-group">
@@ -34,9 +35,7 @@
                 </div>
             </fieldset>
         </form>
-    </main>
-    <footer th:replace="~{fragments/footer :: footer}">
-    </footer>
-</div>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

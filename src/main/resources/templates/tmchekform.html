@@ -3,17 +3,20 @@
 
 <head>
     <title>Student TM Check</title>
-
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
     <link type="text/css"
           rel="stylesheet"
-          href="css/tmcheckstyle.css">
+          th:href="@{/css/tmcheckstyle.css}">
 
+    <!-- Custom styles for this template -->
     <link type="text/css"
           rel="stylesheet"
-          href="">
+          th:href="@{/css/main.css}">
+
 </head>
 
-<body>
+<body >
+<nav th:replace="~{fragments/header :: header}">Header</nav>
 <div id="header">
     <h2>Student TM/Retreat Cheking </h2>
 </div>
@@ -57,7 +60,7 @@
 </div>
 
 
-
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 
 </html>

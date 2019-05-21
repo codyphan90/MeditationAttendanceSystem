@@ -2,14 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/report.js}"></script>
     <meta charset="UTF-8">
     <title>Report By Block</title>
+    <!-- Custom styles for this template -->
+    <link type="text/css"
+          rel="stylesheet"
+          th:href="@{/css/main.css}">
 </head>
-<body>
-<h3 class="masthead-brand"><a th:href="@{/}">Home</a></h3>
+<body class="text-center">
+<nav th:replace="~{fragments/header :: header}">Header</nav>
 <div id="selectBlock" style="text-align: center">
     <label>Block: </label>
     <select id="block">
@@ -27,37 +31,6 @@
 <div id="reportTable">
     <br>
 </div>
-</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
-
-<!--<body class="text-center" data-gr-c-s-loaded="true" style="background-color: #333">-->
-
-<!--<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">-->
-<!--    <header th:replace="~{fragments/header :: header}">Header</header>-->
-<!--    <div id="main" style="background-color: white">-->
-
-<!--        <div id="selectBlock" style="text-align: center">-->
-<!--            <label>Block: </label>-->
-<!--            <select id="block">-->
-<!--                <option value="0">&#45;&#45; Select Block &#45;&#45;</option>-->
-<!--                <option th:each="block : ${blocks}" th:value="${block.getBlockId()}"-->
-<!--                        th:text="${block.getCourse() + ' - ' + block.getName()}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <br>-->
-
-<!--        <div id="csvLink"></div>-->
-<!--        <br>-->
-<!--        &lt;!&ndash;    Report Table&ndash;&gt;-->
-<!--        <div id="reportTable">-->
-<!--            <br>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <footer th:replace="~{fragments/footer :: footer}">-->
-<!--    </footer>-->
-
-<!--</div>-->
-<!--</body>-->
 </html>

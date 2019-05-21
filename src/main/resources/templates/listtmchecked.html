@@ -5,15 +5,19 @@
 
 <head>
     <title>List Customers</title>
-
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css">
     <!-- reference our style sheet -->
 
-    <link type="text/css" rel="stylesheet" href="css/tmcheckstyle.css" />
+    <link type="text/css" rel="stylesheet" th:href="@{/css/tmcheckstyle.css}" />
 
+    <!-- Custom styles for this template -->
+    <link type="text/css"
+          rel="stylesheet"
+          th:href="@{/css/main.css}">
 </head>
 
-<body>
-
+<body class="text-center">
+<nav th:replace="~{fragments/header :: header}">Header</nav>
 <div id="wrapper">
     <div id="header">
         <h2>Student TM-Checking/TM-Retreat System </h2>
@@ -74,7 +78,7 @@
 
 </div>
 
-
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 
 </html>
