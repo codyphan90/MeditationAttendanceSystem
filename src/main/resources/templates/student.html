@@ -18,8 +18,8 @@
 <div id="main" style="text-align: center">
     <h2>Cumulative Attendance Info</h2>
     <div id="cumulativeInfo">
-        <p>Total sessions possible: <span th:text="${report.getAttendedCount()}"/></p>
-        <p>Total sessions attended: <span th:text="${report.getTotalSession()}"></span></p>
+        <p>Total sessions possible: <span th:text="${report.getTotalSession()}"/></p>
+        <p>Total sessions attended: <span th:text="${report.getAttendedCount()}"></span></p>
         <p>Percent attendance: <span th:text="${report.getPercentage()}"></span>  %</p>
     </div>
 
