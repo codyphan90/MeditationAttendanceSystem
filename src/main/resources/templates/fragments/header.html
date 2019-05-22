@@ -3,24 +3,52 @@
 <head>
     <div th:fragment="header-css">
         <!-- this is header-css -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     </div>
 </head>
 <body>
 <!-- this is header -->
-<header class="masthead mb-auto" th:fragment="header">
-    <div class="inner">
-        <h3 class="masthead-brand"><a th:href="@{/}">Home</a></h3>
-        <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" sec:authorize-url="/admin" th:href="@{/admin/process}">Process</a>
-            <a class="nav-link" sec:authorize-url="/faculty/block" th:href="@{/faculty/block}">Report By Block</a>
-            <a class="nav-link" sec:authorize-url="/faculty/entry" th:href="@{/faculty/entry}">Report By Entry</a>
-            <a class="nav-link" sec:authorize-url="/student" th:href="@{/student}">View Attendance</a>
-            <a class="nav-link" sec:authorize-url="/faculty" th:href="@{/}">TM Management</a>
-            <a class="nav-link" href="#">Contact</a>
-        </nav>
-    </div>
-</header>
+<nav class="navbar navbar-default" th:fragment="header">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link" sec:authorize-url="/admin" th:href="@{/admin/process}">Process</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Attendance <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" sec:authorize-url="/faculty/block" th:href="@{/faculty/block}">Report By Block</a></li>
+                        <li><a class="nav-link" sec:authorize-url="/faculty/entry" th:href="@{/faculty/entry}">Report By Entry</a></li>
+                        <li><a class="nav-link" sec:authorize-url="/faculty" th:href="@{/tmchecking}">TM Management</a></li>
+                        <li><a class="nav-link" sec:authorize-url="/student" th:href="@{/student}">View Attendance</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="nav-link" href="#">Contact</a></li>
+                <li class="dropdown" sec:authorize="isAuthenticated()">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Change Password</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/logout}">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 </body>
 </html>

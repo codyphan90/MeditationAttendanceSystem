@@ -14,6 +14,23 @@ $(document).ready(function () {
         }
     });
 
+    $("#selectBlock").change(function () {
+
+        $("#studentDetail").empty();
+        // $("#csvLink").empty();
+        let blockId = $('#block option:selected').val();
+        if (blockId !== '0') {
+            console.log("getAPi")
+            var urlDetail = '/student/detail/' + blockId;
+            // var linkCSV = 'http://localhost:8080/faculty/block/csv/' + blockId;
+
+            // var downloadButton = '<button><a href="'+ linkCSV +'">Download CSV</a></button>';
+            // $("#csvLink").append(downloadButton);
+            $("#studentDetail").load(urlDetail);
+            // $("#reportTable").load(urlDetail);
+        }
+    });
+
     $("#entry").change(function () {
 
         $("#reportTable").empty();

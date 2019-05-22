@@ -2,8 +2,8 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
-    <footer class="mastfoot mt-auto" th:fragment="footer">
-        <div class="inner">
+    <div class="footer navbar-fixed-bottom text-center" th:fragment="footer">
+        <div class="container">
             <!-- this is footer -->
             &copy; 2019 WAA PROJECT
             <span sec:authorize="isAuthenticated()">
@@ -12,13 +12,12 @@
                 <a th:href="@{/logout}">Sign Out</a>
             </span>
         </div>
-    </footer>
 
-    <!-- Bootstrap core JavaScript
-================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
+    </div>
 </body>
 </html>

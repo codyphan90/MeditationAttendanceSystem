@@ -1,6 +1,7 @@
 package edu.mum.waa.entity;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,8 +12,9 @@ import java.util.List;
 @Table(name="student")
 public class Student implements Serializable {
 
+    @Range(min=111, max=999, message ="Id must be in the range 111 to 999")
     @Id
-    public long student_id;
+    public long studentId;
 
     @Column(name="First_Name")
     private String firstName;

@@ -1,6 +1,5 @@
 package edu.mum.waa.service;
 
-
 import edu.mum.waa.entity.Student;
 import edu.mum.waa.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,3 +21,4 @@ public class StudentServiceImpl implements StudentService {
 
 
 }
+

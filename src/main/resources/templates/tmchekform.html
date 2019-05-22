@@ -6,7 +6,7 @@
 
     <link type="text/css"
           rel="stylesheet"
-          href="css/tmcheckstyle.css">
+          href="css/style.css">
 
     <link type="text/css"
           rel="stylesheet"
@@ -16,6 +16,9 @@
 <body>
 <div id="header">
     <h2>Student TM/Retreat Cheking </h2>
+    <p class="redirect">
+        <a th:href="@{/tmchecking}">back to the list</a>
+    </p>
 </div>
 
 
@@ -23,32 +26,32 @@
     <form action="#" th:action="@{/savetmcheck}" th:object="${tm}" method="POST">
 
 
-            <div >Student Id
-                <span class="text"><input type="text" th:field="*{student.student_id}" size="30" /></span></div>
+        <div >Student Id
+            <span class="text"><input type="text" th:field="*{student.studentId}" size="30" /></span></div>
+        <span th:if="${#fields.hasErrors('student.studentId')}" style="color:red;"  th:errors="*{student.studentId}"></span>
+        <div>
+            Checked Date
+            <span class="checkdate"><input type="date" th:field="*{checkedDate}" size="30"/></span>
+            <span th:if="${#fields.hasErrors('checkedDate')}"  style="color:red;" th:errors="*{checkedDate}"></span>
+        </div>
 
+        <div>
+            <label>TM Type<select th:field="*{tmType}">
+                <option value="" >--</option>
+                <option value="tmCheck">TM-Check</option>
+                <option value="tmRetreat">TM-Retreat</option>
+            </select>
+                <span th:if="${#fields.hasErrors('tmType')}" style="color:red;"  th:errors="*{tmType}"></span>
+            </label>
 
-            <div>
-                Checked Date
-                <span class="checkdate"><input type="date" th:field="*{checkedDate}" size="30"/></span>
-            </div>
+        </div>
 
+        <div>
 
-            <div>
-               <label>TM Type<select th:field="*{tmType}">
-                    <option value="" >--</option>
-                    <option value="tmCheck">TM-Check</option>
-                    <option value="tmRetreat">TM-Retreat</option>
-            </select></label>
+            <input type="submit" value="Checked" class="save" />
+        </div>
 
-            </div>
-
-
-            <div>
-
-                <input type="submit" value="Checked" class="save" />
-            </div>
-
-
+        <div class="exception"><span th:text="${message}" style="color:red;"></span></div>
 
 
     </form>

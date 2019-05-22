@@ -12,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.ICsvBeanWriter;
-import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value ="/faculty")
-public class AttendanceController {
+public class FacultyController {
     @Autowired
     private BlockService blockService;
 
@@ -50,9 +47,11 @@ public class AttendanceController {
         return "facultyentry";
     }
 
+
+    // report table
     @GetMapping(value = "/block/{blockId}")
     public String getBlockReport(@PathVariable("blockId") Integer blockId, Model model) {
-        List<StudentReport> studentReports = attendanceService.getBlockReport(blockId);
+        List<StudentReport> studentReports = attendanceService.getBlockReportOfAllStudent(blockId);
         model.addAttribute("reports", studentReports);
         System.out.println("report = " + studentReports.toString());
         return "reporttable";
@@ -66,9 +65,10 @@ public class AttendanceController {
         return "reporttable";
     }
 
+    // CSV
     @GetMapping(value = "/block/csv/{blockId}")
     public void getCSVBlock(@PathVariable("blockId") Integer blockId, HttpServletResponse response) throws IOException {
-        List<StudentReport> studentReports = attendanceService.getBlockReport(blockId);
+        List<StudentReport> studentReports = attendanceService.getBlockReportOfAllStudent(blockId);
         String csvName = blockService.getBlockName(blockId) + ".csv";
         Common.exportCSV(response, studentReports,  csvName);
     }

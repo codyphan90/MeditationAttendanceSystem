@@ -1,5 +1,6 @@
 package edu.mum.waa.Utils;
 
+import edu.mum.waa.entity.BlockEntity;
 import edu.mum.waa.response.StudentReport;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -39,5 +41,18 @@ public class Common {
         }
 
         csvWriter.close();
+    }
+
+    public static List<LocalDate> getAllDateOfBlock(BlockEntity blockEntity) {
+        LocalDate start =blockEntity.getStartDate();
+        LocalDate end = blockEntity.getEndDate();
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!start.isAfter(end)) {
+            if (start.getDayOfWeek() != DayOfWeek.SUNDAY) {
+                totalDates.add(start);
+            }
+                start = start.plusDays(1);
+        }
+        return totalDates;
     }
 }
