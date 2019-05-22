@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a class="nav-link" sec:authorize-url="/admin" th:href="@{/admin/process}">Process</a></li>
-                <li class="dropdown">
+                <li class="dropdown" sec:authorize-url="/student">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Attendance <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" sec:authorize-url="/faculty/block" th:href="@{/faculty/block}">Report By Block</a></li>
